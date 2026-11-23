@@ -6,7 +6,7 @@
   <title>Penguins · MATE ROV 2027 · Software Dashboard</title>
   <meta name="description" content="Interactive architecture dashboard, 2027 tools archive, and guide for Team Penguins Software." />
   <link rel="icon" href="assets/logo-favicon.png" />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
   <div class="water-rays" aria-hidden="true"></div>
@@ -170,5 +170,20 @@
 
   <script src="script.js?v=3"></script>
   <script src="tools-archive.js?v=3"></script>
+  <script>
+    (function () {
+      const v = document.getElementById("rovBgVideo");
+      if (!v) return;
+      const keepSpinning = () => {
+        v.playbackRate = 0.45;
+        if (v.paused) v.play().catch(() => {});
+      };
+      v.addEventListener("loadedmetadata", keepSpinning);
+      v.addEventListener("canplay", keepSpinning);
+      v.addEventListener("ended", () => { v.currentTime = 0; keepSpinning(); });
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) keepSpinning(); });
+      keepSpinning();
+    })();
+  </script>
 </body>
 </html>
