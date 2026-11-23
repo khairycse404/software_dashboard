@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Penguins · MATE ROV 2027 · Software Lead Dashboard</title>
+  <meta name="description" content="Interactive architecture dashboard and 1-week survival guide for the Team Penguins Software Lead." />
+  <link rel="icon" href="assets/logo-favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bubbles" aria-hidden="true"></div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar" id="top">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="logo-badge" title="Team Penguins">
+          <img src="assets/logo-penguins.png" alt="Team Penguins logo" />
+        </span>
+        <span class="logo-badge logo-badge--ieee" title="IEEE Zagazig Student Branch">
+          <img src="assets/logo-ieee.png" alt="IEEE Zagazig Student Branch logo" />
+        </span>
+        <div class="brand-text">
+          <strong>MATE ROV 2027</strong>
+          <span>Software Lead Dashboard</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#big-picture" data-section="big-picture">Big Picture</a>
+        <a href="#arsenal" data-section="arsenal">The Arsenal</a>
+        <a href="#crash-course" data-section="crash-course">Crash Course</a>
+        <a href="#tools-archive" data-section="tools-archive">Tools Archive</a>
+      </nav>
+      <div class="nav-progress" title="Crash course progress">
+        <span id="navProgressLabel">0%</span>
+        <div class="mini-bar"><i id="navProgressBar"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <p class="eyebrow">Targeting: Best Software Architecture · Best Computer Vision</p>
+      <h1>You don't need to write every node.<br /><span>You need to see the whole system.</span></h1>
+      <p class="lead">
+        This dashboard condenses the Obsidian vault into three things: how the vehicle fits together,
+        which 13 architecture ideas win points (including real-time 3D mapping), and the minimum you must learn this week to lead the teams with confidence.
+      </p>
+      <ul class="stats" aria-label="Key targets">
+        <li><b>&lt; 15%</b><span>RPi 4 CPU</span></li>
+        <li><b>&lt; 48&nbsp;°C</b><span>RPi 4 temperature</span></li>
+        <li><b>&lt; 35&nbsp;ms</b><span>video latency</span></li>
+        <li><b>100&nbsp;Hz</b><span>ESP32 control loop</span></li>
+        <li><b>≤ 28.5&nbsp;A</b><span>total thruster current</span></li>
+      </ul>
+    </section>
+
+    <!-- ===================== SECTION 1 ===================== -->
+    <section class="section" id="big-picture" aria-labelledby="bp-title">
+      <div class="section-head">
+        <span class="step">01</span>
+        <div>
+          <h2 id="bp-title">The Big Picture</h2>
+          <p>Follow the data from the pilot's screen to the thrusters. Hover (or tap) any block to see what it does.</p>
+        </div>
+      </div>
+
+      <div class="flow" id="flow" role="list" aria-label="System data flow"></div>
+
+      <div class="rule-grid">
+        <article class="rule rule--top">
+          <h3>Topside = heavy &amp; pretty</h3>
+          <p>GUI, YOLO inference, 3D reconstruction. Plenty of power, no heat problem.</p>
+        </article>
+        <article class="rule rule--rpi">
+          <h3>RPi 4 = route &amp; stream</h3>
+          <p>Moves video and messages. It must stay cool and nearly idle.</p>
+        </article>
+        <article class="rule rule--esp">
+          <h3>ESP32 = real-time &amp; safe</h3>
+          <p>Mixing, PID, current limiting and failsafes. Never waits on the network.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 2 ===================== -->
+    <section class="section" id="arsenal" aria-labelledby="ar-title">
+      <div class="section-head">
+        <span class="step">02</span>
+        <div>
+          <h2 id="ar-title">The Arsenal</h2>
+          <p>10 priorities, 2 hybrids, and 1 experimental mapping engine. Click a card for the executive summary: what it is, why it wins points, who owns it.</p>
+        </div>
+      </div>
+
+      <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <!-- ===================== SECTION 3 ===================== -->
+    <section class="section" id="crash-course" aria-labelledby="cc-title">
+      <div class="section-head">
+        <span class="step">03</span>
+        <div>
+          <h2 id="cc-title">The 1-Week Lead Crash Course</h2>
+          <p>The bare minimum to <em>manage</em> three teams well. Tick items as you learn them; progress is saved in this browser.</p>
+        </div>
+      </div>
+
+      <div class="course">
+        <aside class="progress-card" aria-label="Overall progress">
+          <div class="ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+              <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"></circle>
+            </svg>
+            <div class="ring-label"><b id="ringPct">0%</b><span id="ringCount">0 / 0</span></div>
+          </div>
+          <p class="ring-msg" id="ringMsg" aria-live="polite"></p>
+          <ul class="track-bars" id="trackBars"></ul>
+          <button class="btn-ghost" id="resetBtn" type="button">Reset progress</button>
+        </aside>
+
+        <div class="course-main">
+          <div class="tabs" role="tablist" aria-label="Learning tracks" id="tabs"></div>
+          <div id="panels"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 4: TOOLS ARCHIVE ===================== -->
+    <section class="section" id="tools-archive" aria-labelledby="ta-title">
+      <div class="section-head">
+        <span class="step">04</span>
+        <div>
+          <h2 id="ta-title">2027 Tools Archive</h2>
+          <p>Quick brief for every tool &amp; algorithm in our timeline. Click any card—or jump straight here from our Google Sheet via <code>#tool/&lt;id&gt;</code>.</p>
+        </div>
+      </div>
+
+      <div class="tools-controls">
+        <input type="search" id="toolSearch" class="tool-search" placeholder="Search tools (e.g. uStreamer, DPMS, YOLO11-OBB, Tailscale, rosbag2)..." aria-label="Search tools archive" />
+        <div class="filters" id="toolFilters" role="group" aria-label="Filter tools by category"></div>
+      </div>
+
+      <div class="tools-grid" id="toolsGrid"></div>
+    </section>
+  </main>
+
+  <!-- Tool Brief Modal -->
+  <div class="tool-modal" id="toolModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="tool-modal__card">
+      <button type="button" class="tool-modal__close" id="toolModalClose" aria-label="Close tool brief">&times;</button>
+      <div id="toolModalBody"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Team Penguins · IEEE Zagazig Student Branch · MATE ROV 2027</p>
+    <p class="muted">Source of truth: <code>PENGUINS_SOFTWARE_MASTER_README.md</code> and the Obsidian vault <code>MATE_ROV_2027_Penguins</code>.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="tools-archive.js"></script>
+</body>
+</html>
