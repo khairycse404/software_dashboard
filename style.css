@@ -616,3 +616,21 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 24px 40px; }
   background: #37c9ef;
   color: #0b1938;
 }
+
+
+/* Seamless transparent white logos blended into dark navbar */
+.logo-badge,
+.logo-badge--ieee {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 4px !important;
+}
+.logo-badge img {
+  height: 40px !important;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+}
+.logo-badge--ieee img {
+  height: 36px !important;
+}
