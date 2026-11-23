@@ -56,54 +56,67 @@
     { id: "p1", prio: "#1", cat: "control", title: "Two-Pass Mixer", tag: "Stable at full stick",
       what: "Thruster math in two passes: stabilization (roll, pitch, yaw) gets motor power first, driving only uses what is left.",
       why: "The ROV never tips over when the pilot floors it, so judges see rock-steady footage and a clearly smarter control design.",
+      tools: [["Two-Pass Mixer", "two-pass-mixer"], ["ESP32 FreeRTOS", "micro-ros"], ["Cascaded PID", "cascaded-pid"]],
       who: ["emb"] },
     { id: "p2", prio: "#2", cat: "comms", title: "uStreamer Passthrough", tag: "Cool Pi, fast video",
       what: "Camera frames go straight from the Linux kernel onto the network, so the Pi never re-encodes video.",
       why: "Fixes last year's overheating: Pi CPU under 8%, latency under 35 ms, and the ROS nodes start reliably.",
+      tools: [["uStreamer", "ustreamer"], ["v4l2-ctl", "v4l2-ctl"], ["Linux udev / systemd", "multi-user-rpi"]],
       who: ["ros"] },
     { id: "p3", prio: "#3", cat: "vision", title: "YOLO11-OBB Perception", tag: "Rotated crab boxes",
       what: "The detector draws tilted boxes that hug each crab instead of a loose axis-aligned rectangle.",
       why: "Less seabed noise, fewer false positives against native crabs, and the box itself gives the carapace size.",
+      tools: [["YOLO11-OBB + ByteTrack", "yolo11-obb"], ["C++ Gray World + CLAHE", "grayworld-clahe"], ["Blender Synthetic Data", "blender-synthetic"]],
       who: ["ai"] },
     { id: "p4", prio: "#4", cat: "control", title: "Polynomial DPMS", tag: "Never blow the fuse",
       what: "Estimates total current from the thrust commands and scales every thruster by the same factor above 28.5 A.",
       why: "Protects the 30 A fuse and the 5 V logic from brownouts while keeping the pilot's direction exactly the same.",
+      tools: [["Polynomial DPMS", "dpms"], ["ESP32 100 Hz Loop", "micro-ros"], ["ECharts Live Amps", "echarts"]],
       who: ["emb"] },
     { id: "p5", prio: "#5", cat: "vision", title: "Dual-USB Stereo Rig", tag: "Depth for $36",
       what: "Two cheap webcams mounted 120 mm apart, calibrated underwater, give a depth map.",
       why: "Real 3D measurement without a camera that costs thousands: a strong cost-versus-capability story.",
+      tools: [["Dual-USB Stereo + ChArUco", "colmap-ngp"], ["uStreamer", "ustreamer"], ["OpenCV StereoSGBM", "grayworld-clahe"]],
       who: ["ai"] },
     { id: "p6", prio: "#6", cat: "vision", title: "Laplacian Gatekeeper", tag: "Only sharp frames",
       what: "Scores every video frame for sharpness and silently drops the blurry ones before 3D reconstruction.",
       why: "Cleaner 3D models in less time, because thruster wash and pilot motion no longer poison the dataset.",
+      tools: [["Laplacian Filter", "colmap-ngp"], ["C++ Gray World + CLAHE", "grayworld-clahe"], ["OpenCV", null]],
       who: ["ai"] },
     { id: "p7", prio: "#7", cat: "gui", title: "Three.js 3D Caliper", tag: "Click to measure",
       what: "The pilot clicks two points on the 3D model in the browser and the HUD shows the real distance.",
       why: "Judges watch a live, millimetre-level measurement instead of someone holding a ruler to a screen.",
+      tools: [["Three.js 3D Caliper", "threejs-twin"], ["foxglove_bridge", "foxglove-bridge"], ["React 18", null]],
       who: ["gui"] },
     { id: "p8", prio: "#8", cat: "vision", title: "Synthetic Blender Dataset", tag: "Free labeled images",
       what: "A Blender script renders thousands of underwater crab images and writes the labels automatically.",
       why: "A stronger model without endless pool days or hand-drawn boxes, which is a very credible CV story.",
+      tools: [["Blender Python (bpy)", "blender-synthetic"], ["YOLO11-OBB", "yolo11-obb"], ["v4l2-ctl Glare Sim", "v4l2-ctl"]],
       who: ["ai"] },
     { id: "p9", prio: "#9", cat: "failsafe", title: "Liveliness Auto-Ascent", tag: "Tether cut ≠ crash",
       what: "The ESP32 expects a heartbeat; if it goes quiet for 1 s it stops horizontal thrust and floats up.",
       why: "Shows the judges the vehicle is safe by design, even when the cable or the Pi fails.",
+      tools: [["Micro-ROS LIVELINESS", "micro-ros"], ["Lifecycle & WDT", "lifecycle-nodes"], ["ros2 doctor", "ros2-doctor"]],
       who: ["ros", "emb"] },
     { id: "p10", prio: "#10", cat: "gui", title: "1-Click Reverse Mode", tag: "Rear tools, no brain-flip",
       what: "One button flips the joystick axes and swaps the main camera to the rear view.",
       why: "Pilots stop mentally inverting controls under time pressure, which means fewer mistakes at the rear gripper.",
+      tools: [["ECharts & Reverse Mode", "echarts"], ["foxglove_bridge", "foxglove-bridge"], ["uStreamer", "ustreamer"]],
       who: ["gui"] },
     { id: "h1", prio: "Hybrid 1", cat: "hybrid", title: "3D Metrology Engine", tag: "Dive to measurement, fast",
       what: "Stereo rig, then Laplacian gate, then Instant-NGP mesh, then the Three.js caliper, as one pipeline.",
       why: "Turns a coral-garden scan into a measured 3D model in about a minute using almost no extra hardware.",
+      tools: [["COLMAP + Instant-NGP", "colmap-ngp"], ["Three.js 3D Caliper", "threejs-twin"], ["C++ Gray World + CLAHE", "grayworld-clahe"]],
       who: ["ai", "gui"] },
     { id: "h2", prio: "Hybrid 2", cat: "hybrid", title: "Fail-Proof Propulsion Core", tag: "Can't flip, burn or run away",
       what: "Two-Pass Mixer, DPMS current limiting and auto-ascent combined in one 100 Hz ESP32 task.",
       why: "One coherent safety story for the architecture judges: stable, electrically safe and fail-safe.",
+      tools: [["Two-Pass Mixer", "two-pass-mixer"], ["Polynomial DPMS", "dpms"], ["Cascaded PID", "cascaded-pid"], ["Micro-ROS Failsafe", "micro-ros"]],
       who: ["emb", "ros"] },
     { id: "exp1", prio: "Exp", cat: "vision", title: "Experimental: Real-Time 3D Mapping", tag: "Monocular maps on the fly",
       what: "Bypasses the NeRF pipeline by generating 3D pointmaps directly from the uStreamer feed using monocular foundation models (Depth Anything V2 / DUSt3R).",
       why: "Delivers instantaneous single-pass pool floor mapping and collision awareness in real time, eliminating multi-view orbits and training latency.",
+      tools: [["uStreamer", "ustreamer"], ["Camera 3D R&D", "colmap-ngp"], ["Three.js Viewer", "threejs-twin"], ["Depth Anything V2 / DUSt3R", null]],
       who: ["ai"] }
   ];
   const FILTERS = [
@@ -270,6 +283,11 @@
       card.dataset.cat = c.cat;
       const bodyId = "card-body-" + c.id;
       const owners = c.who.map(k => `<span class="o-${k}">${OWNER[k]}</span>`).join("");
+      const toolsHtml = (c.tools || []).map(([label, tid]) =>
+        tid
+          ? `<a class="arsenal-tool arsenal-tool--link" href="#tool/${tid}">${label} ↗</a>`
+          : `<span class="arsenal-tool">${label}</span>`
+      ).join("");
       card.innerHTML = `
         <button class="card-btn" type="button" aria-expanded="false" aria-controls="${bodyId}">
           <div class="card-top"><span class="prio">${c.prio}</span><span class="cat">${c.cat}</span></div>
@@ -282,6 +300,7 @@
             <dl class="detail">
               <div><dt>What it is</dt><dd>${c.what}</dd></div>
               <div><dt>Why it wins points</dt><dd>${c.why}</dd></div>
+              <div><dt>Tools needed</dt><dd class="arsenal-tools">${toolsHtml}</dd></div>
               <div><dt>Who owns it</dt><dd class="owner">${owners}</dd></div>
             </dl>
           </div>

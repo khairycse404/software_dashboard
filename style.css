@@ -586,3 +586,33 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 24px 40px; }
   color: #0b1938;
   font-weight: 700;
 }
+
+
+/* Clickable Tools Needed pills inside Section 02 Arsenal cards */
+.arsenal-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.arsenal-tool {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(213, 219, 253, 0.10);
+  border: 1px solid rgba(213, 219, 253, 0.25);
+  color: var(--peri);
+}
+.arsenal-tool--link {
+  background: rgba(55, 201, 239, 0.14);
+  border-color: rgba(55, 201, 239, 0.42);
+  color: #37c9ef;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+.arsenal-tool--link:hover {
+  background: #37c9ef;
+  color: #0b1938;
+}
