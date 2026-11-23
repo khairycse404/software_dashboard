@@ -175,12 +175,16 @@
       const v = document.getElementById("rovBgVideo");
       if (!v) return;
       const keepSpinning = () => {
-        v.playbackRate = 0.45;
+        v.playbackRate = 0.85;
         if (v.paused) v.play().catch(() => {});
       };
       v.addEventListener("loadedmetadata", keepSpinning);
       v.addEventListener("canplay", keepSpinning);
-      v.addEventListener("ended", () => { v.currentTime = 0; keepSpinning(); });
+      v.addEventListener("timeupdate", () => {
+        if (v.duration && v.currentTime >= v.duration - 0.18) {
+          v.currentTime = 0.05;
+        }
+      });
       document.addEventListener("visibilitychange", () => { if (!document.hidden) keepSpinning(); });
       keepSpinning();
     })();
