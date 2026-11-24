@@ -103,16 +103,6 @@
       why: "Pilots stop mentally inverting controls under time pressure, which means fewer mistakes at the rear gripper.",
       tools: [["ECharts & Reverse Mode", "echarts"], ["foxglove_bridge", "foxglove-bridge"], ["uStreamer", "ustreamer"]],
       who: ["gui"] },
-    { id: "h1", prio: "Hybrid 1", cat: "hybrid", title: "3D Metrology Engine", tag: "Dive to measurement, fast",
-      what: "Stereo rig, then Laplacian gate, then Instant-NGP mesh, then the Three.js caliper, as one pipeline.",
-      why: "Turns a coral-garden scan into a measured 3D model in about a minute using almost no extra hardware.",
-      tools: [["COLMAP + Instant-NGP", "colmap-ngp"], ["Three.js 3D Caliper", "threejs-twin"], ["C++ Gray World + CLAHE", "grayworld-clahe"]],
-      who: ["ai", "gui"] },
-    { id: "h2", prio: "Hybrid 2", cat: "hybrid", title: "Fail-Proof Propulsion Core", tag: "Can't flip, burn or run away",
-      what: "Two-Pass Mixer, DPMS current limiting and auto-ascent combined in one 100 Hz ESP32 task.",
-      why: "One coherent safety story for the architecture judges: stable, electrically safe and fail-safe.",
-      tools: [["Two-Pass Mixer", "two-pass-mixer"], ["Polynomial DPMS", "dpms"], ["Cascaded PID", "cascaded-pid"], ["Micro-ROS Failsafe", "micro-ros"]],
-      who: ["emb", "ros"] },
     { id: "exp1", prio: "Exp", cat: "vision", title: "Experimental: Real-Time 3D Mapping", tag: "Monocular maps on the fly",
       what: "Bypasses the NeRF pipeline by generating 3D pointmaps directly from the uStreamer feed using monocular foundation models (Depth Anything V2 / DUSt3R).",
       why: "Delivers instantaneous single-pass pool floor mapping and collision awareness in real time, eliminating multi-view orbits and training latency.",
@@ -121,7 +111,7 @@
   ];
   const FILTERS = [
     ["all", "All"], ["control", "Control"], ["comms", "Comms"], ["vision", "Vision"],
-    ["gui", "GUI"], ["failsafe", "Failsafe"], ["hybrid", "Hybrids"]
+    ["gui", "GUI"], ["failsafe", "Failsafe"]
   ];
 
   // Section 3 · crash course. Items are concepts to understand, not skills to master.
