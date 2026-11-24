@@ -785,3 +785,130 @@ main, .footer {
   color: #37c9ef;
   white-space: nowrap;
 }
+
+
+/* ---------- Force-Hide Progress Bar & Mobile-First Responsive Polish ---------- */
+.nav-progress,
+#crash-course[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --nav-h: 108px;
+  }
+  .navbar {
+    height: auto;
+    padding: 10px 0 8px;
+  }
+  .nav-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 0 14px;
+    height: auto;
+  }
+  .brand {
+    justify-content: center;
+    gap: 10px;
+  }
+  .brand-text {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .brand-text strong { font-size: 0.92rem; }
+  .brand-text span { font-size: 0.74rem; }
+  .logo-badge img { height: 32px !important; }
+  .logo-badge--ieee img { height: 28px !important; }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 4px 0 2px;
+    border-top: 1px solid rgba(213, 219, 253, 0.12);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 6px 11px;
+    border-radius: 999px;
+  }
+
+  .hero {
+    padding-top: 28px;
+    padding-bottom: 16px;
+  }
+  .hero .eyebrow {
+    font-size: 0.76rem;
+    line-height: 1.35;
+    padding: 6px 12px;
+  }
+  .hero h1 {
+    font-size: clamp(1.7rem, 7vw, 2.25rem);
+    line-height: 1.15;
+  }
+  .hero .lead {
+    font-size: 0.94rem;
+  }
+
+  /* 2-col stats grid with last odd card spanning full width cleanly */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .stats li {
+    padding: 14px 12px;
+  }
+  .stats li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .stats li b {
+    font-size: 1.35rem;
+  }
+
+  /* Single-column comfortable cards on phone */
+  .tools-grid,
+  .archive-grid,
+  .cards {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .tool-card,
+  .archive-card {
+    padding: 16px;
+  }
+  .tool-search {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+  #toolFilters {
+    gap: 7px;
+  }
+  #toolFilters .filter-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  /* Mobile Tool Brief Modal */
+  .tool-modal {
+    padding: 12px;
+  }
+  .tool-modal__card {
+    padding: 20px 18px;
+    max-height: 90vh;
+  }
+  .tool-modal__title {
+    font-size: 1.2rem;
+  }
+  .rov-bg video {
+    width: 115vw;
+    opacity: 0.22;
+  }
+}
