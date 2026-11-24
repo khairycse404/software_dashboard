@@ -35,10 +35,9 @@
       <nav class="nav-links" aria-label="Sections">
         <a href="#big-picture" data-section="big-picture">Big Picture</a>
         <a href="#arsenal" data-section="arsenal">The Arsenal</a>
-        <a href="#crash-course" data-section="crash-course">Crash Course</a>
         <a href="#tools-archive" data-section="tools-archive">Tools Archive</a>
       </nav>
-      <div class="nav-progress" title="Crash course progress">
+      <div class="nav-progress" hidden aria-hidden="true">
         <span id="navProgressLabel">0%</span>
         <div class="mini-bar"><i id="navProgressBar"></i></div>
       </div>
@@ -49,10 +48,10 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero">
       <p class="eyebrow">Targeting: Best Software Architecture · Best Computer Vision</p>
-      <h1>You don't need to write every node.<br /><span>You need to see the whole system.</span></h1>
+      <h1>One layered architecture.<br /><span>Every subsystem in its exact place.</span></h1>
       <p class="lead">
-        This dashboard condenses the Obsidian vault into three things: how the vehicle fits together,
-        which 13 architecture ideas win points (including real-time 3D mapping), and the minimum you must learn this week to lead the teams with confidence.
+        This dashboard brings together Team Penguins' MATE ROV 2027 software stack: how our 3-tier system fits together,
+        the 13 core engineering upgrades targeting competition points, and a searchable Tools Archive with quick briefs for every technology we use.
       </p>
       <ul class="stats" aria-label="Key targets">
         <li><b>&lt; 15%</b><span>RPi 4 CPU</span></li>
@@ -105,8 +104,8 @@
       <div class="cards" id="cards"></div>
     </section>
 
-    <!-- ===================== SECTION 3 ===================== -->
-    <section class="section" id="crash-course" aria-labelledby="cc-title">
+    <!-- ===================== SECTION 3 (HIDDEN) ===================== -->
+    <section class="section" id="crash-course" aria-labelledby="cc-title" hidden>
       <div class="section-head">
         <span class="step">03</span>
         <div>
@@ -136,10 +135,10 @@
       </div>
     </section>
 
-    <!-- ===================== SECTION 4: TOOLS ARCHIVE ===================== -->
+    <!-- ===================== SECTION 3: TOOLS ARCHIVE ===================== -->
     <section class="section" id="tools-archive" aria-labelledby="ta-title">
       <div class="section-head">
-        <span class="step">04</span>
+        <span class="step">03</span>
         <div>
           <h2 id="ta-title">2027 Tools Archive</h2>
           <p>Quick brief for every tool &amp; algorithm in our timeline. Click any card—or jump straight here from our Google Sheet via <code>#tool/&lt;id&gt;</code>.</p>
@@ -165,7 +164,7 @@
 
   <footer class="footer">
     <p>Team Penguins · IEEE Zagazig Student Branch · MATE ROV 2027</p>
-    <p class="muted">Source of truth: <code>PENGUINS_SOFTWARE_MASTER_README.md</code> and the Obsidian vault <code>MATE_ROV_2027_Penguins</code>.</p>
+    <p class="muted">Layered Software Architecture · Control · Perception · Pilot Experience</p>
   </footer>
 
   <script src="script.js?v=3"></script>
