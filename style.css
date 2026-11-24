@@ -712,3 +712,76 @@ main, .footer {
   .water-rays { animation: none; }
   .rov-bg video { animation: none; }
 }
+
+
+/* ---------- Section 04: Technical Archives & Planning Cards ---------- */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 18px;
+}
+.archive-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(155deg, rgba(22, 42, 86, 0.72) 0%, rgba(11, 25, 56, 0.82) 100%);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.archive-card:hover,
+.archive-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: #37c9ef;
+  box-shadow: 0 14px 32px rgba(55, 201, 239, 0.18);
+}
+.archive-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.archive-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(55, 201, 239, 0.14);
+  border: 1px solid rgba(55, 201, 239, 0.36);
+  color: #37c9ef;
+}
+.archive-arrow {
+  font-size: 1.15rem;
+  color: #37c9ef;
+  transition: transform 0.18s ease;
+}
+.archive-card:hover .archive-arrow {
+  transform: translate(3px, -3px);
+}
+.archive-card h3 {
+  font-size: 1.12rem;
+  color: var(--white);
+}
+.archive-card p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  flex: 1;
+}
+.archive-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+.archive-card__foot strong {
+  color: #37c9ef;
+  white-space: nowrap;
+}
